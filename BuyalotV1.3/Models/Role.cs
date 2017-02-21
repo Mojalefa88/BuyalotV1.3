@@ -18,6 +18,7 @@ namespace BuyalotV1._3.Models
         public int roleId { get; set; }
 
         [Display(Name = "Role Name")]
+        [Required]
         public byte[] roleName { get; set; }
     }
 }
