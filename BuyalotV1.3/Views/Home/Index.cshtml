@@ -4,7 +4,7 @@
     @model IEnumerable<BuyalotV1._3.Models.Product>
 
     @{
-        ViewBag.Title = "View Products";
+        ViewBag.Title = "Index";
     }
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -14,7 +14,7 @@
 </head>
 <body>
     <h2>Featured Products</h2>
-
+  
     <div class="container">
         <div class="row">
             @{
@@ -25,7 +25,7 @@
             {
                 column_count++;
 
-                <div class="table col-lg-10" style="width:200px; height:225px; text-align:left; display:inline-block; margin:0 10px 10px 0;" id="myTable">
+                <div class="table col-lg-10 table-bordered text-center" style="width:200px; height:300px; text-decoration: dotted; text-align:match-parent; display:inline-grid; margin:0 10px 10px 0;" id="myTable">
                     @{
                         var base64 = Convert.ToBase64String(product.productImage);
                         var prodImage = string.Format("data:image/png;base64,{0}", base64);
@@ -56,10 +56,10 @@
 
                     }
 
-
+                    <br />
+                    <br />
                 </div>
-
-
+                
                         }
             <br />
             <br />

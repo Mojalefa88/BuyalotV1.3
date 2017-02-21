@@ -11,7 +11,8 @@ namespace BuyalotV1._3.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class ProductCategory
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,8 +20,10 @@ namespace BuyalotV1._3.Models
         {
             this.Products = new HashSet<Product>();
         }
-    
+        
         public int prodCategoryID { get; set; }
+
+        [Display(Name = "Category Name")]
         public string categoryName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

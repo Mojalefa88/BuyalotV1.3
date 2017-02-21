@@ -35,7 +35,7 @@
                     <li><a class="active" href="#home"><i class="glyphicon glyphicon-home glyphicon-white"></i> Home</a></li>
                     <li><a href="#about">About Us</a></li>
                     <li><a href="#contactUs">Contact US</a></li>
-
+                    <li>@Html.ActionLink("Roles", "Index", "Role")</li>
                 </ul>
 
 
@@ -73,17 +73,40 @@
                 <div class="dropdown-toggle" data-toggle="dropdown">Browse By Category<b class="caret"></b></div>
                 <ul class="dropdown-menu">
                     @foreach (var category in iCategoryRepository.findAll())
-            {
-                        <li><a href="#">@category.categoryName</a></li>
+                    {
+                        <li><a href="@Url.Action("Category", "Home", new { id = category.prodCategoryID })" >@category.categoryName</a></li>
                     }
 
                 </ul>
             </li>
         </ul>
 
-        <input type="search" class="form-control" style="max-width:900px;" id="searchProducts" onkeyup="myFunction()" placeholder="search for product" />
-
+       
+       @using (Html.BeginForm())
+       {
+        <Div class="nav form-inline">
+            <input type="search" class="form-control" name="SearchString" style="max-width:800px;" id="SearchString" onkeyup="myFunction()" placeholder="search for product" />
+            <input type="submit" value="Filter" />
+        </Div>
+       }
     </div>
+
+    @*<div class="container">
+        <ul class="nav navbar-left col-lg-2">
+            <li>
+                <ul>
+                    @foreach (var category in iCategoryRepository.findAll())
+                    {
+                        <li>@category.categoryName</li>
+                        <li>gfbngbng</li>
+                    }
+
+                </ul>
+            </li>
+        </ul>
+
+    </div>*@
+
 
     <div class="container">
         @RenderBody()
@@ -101,6 +124,6 @@
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
 
-
+    @RenderSection("Scripts", false)
 </body>
 </html>

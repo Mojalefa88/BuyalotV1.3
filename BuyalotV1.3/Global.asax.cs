@@ -16,6 +16,7 @@ namespace BuyalotV1._3
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            BundleMobileConfig.RegisterBundles(BundleTable.Bundles);
         }
     }
 }

@@ -1,22 +1,24 @@
 ﻿@model BuyalotV1._3.Models.Product
 
 @{
-    ViewBag.Title = "Create Product";
+    ViewBag.Title = "Edit Product";
 }
 
-<h2>Create Product</h2>
+<h2>Edit Product</h2>
 
 
-@using (Html.BeginForm("Create", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Edit", "ProductsManager", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h2 @*class="col-md-2"*@>Product Details</h2>
-
+        <h2>Product Details</h2>
         <p style="color:green">@ViewBag.result<p />
         <hr />
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.productID)
+
         <div class="form-group">
             @Html.LabelFor(model => model.productName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -34,23 +36,14 @@
         </div>
 
         <div class="form-group">
-            @foreach (var category in ViewData["Categories"] as List<BuyalotV1._3.Models.ProductCategory>)
-            {
-                @Html.LabelFor(model => category.categoryName, "categoryName", htmlAttributes: new { @class = "control-label col-md-2" })
-            }
+            @Html.LabelFor(model => model.prodCategoryID, "prodCategoryID", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <select>
-                    @foreach (var category in ViewData["Categories"] as List<BuyalotV1._3.Models.ProductCategory>)
-                {
-                        <option class="form-control" value="selectedItem">@category.categoryName</option>
-                    }
-
-                </select>
+                @Html.DropDownList("prodCategoryID", "--Select Category--")
+                @Html.ValidationMessageFor(model => model.prodCategoryID, "", new { @class = "text-danger" })
             </div>
         </div>
 
-
-
+     
         <div class="form-group">
             @Html.LabelFor(model => model.price, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -85,7 +78,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>
@@ -94,3 +87,5 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+

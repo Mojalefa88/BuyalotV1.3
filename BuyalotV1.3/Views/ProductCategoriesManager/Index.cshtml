@@ -1,0 +1,33 @@
+﻿@model IEnumerable<BuyalotV1._3.Models.ProductCategory>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-condensed ">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.categoryName)
+        </th>
+        <th>Action</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.categoryName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.prodCategoryID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.prodCategoryID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.prodCategoryID })
+        </td>
+    </tr>
+}
+
+</table>

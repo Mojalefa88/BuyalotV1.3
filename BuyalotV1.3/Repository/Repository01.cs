@@ -15,10 +15,13 @@ namespace BuyalotV1._3.Repository
         {
             List<ProductCategory> categories = new List<ProductCategory>();
 
-            categories.Add(new ProductCategory { prodCategoryID = 1, categoryName = "Tumelo" });
-            //categories.Add(new ProductCategory { prodCategoryID = pr});
+            categories.Add(new ProductCategory { prodCategoryID = 1, categoryName = "Computers" });
+            categories.Add(new ProductCategory { prodCategoryID = 2, categoryName = "Laptops" });
+            categories.Add(new ProductCategory { prodCategoryID = 3, categoryName = "Mobile Phones" });
+            categories.Add(new ProductCategory { prodCategoryID = 4, categoryName = "Gadgets" });
+            categories.Add(new ProductCategory { prodCategoryID = 5, categoryName = "TV & Audio" });
             return categories;
         }
-
+        
     }
 }

@@ -11,27 +11,44 @@ namespace BuyalotV1._3.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Product
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
+            this.Carts = new HashSet<Cart>();
             this.OrderDetails = new HashSet<OrderDetail>();
         }
     
         public int productID { get; set; }
+
+        [Display(Name ="Product Name")]
         public string productName { get; set; }
+
+        [Display(Name = "Product Description")]
         public string productDescription { get; set; }
-        public Nullable<int> prodCategoryID { get; set; }
+
+        [Display(Name = "Category Name")]
+        public int prodCategoryID { get; set; }
+
+        [Display(Name = "Price")]
         public decimal price { get; set; }
+
+        [Display(Name = "Product Vendor")]
         public string vendor { get; set; }
+
+        [Display(Name = "Quantity in Stock")]
         public int quantityInStock { get; set; }
+
+        [Display(Name = "Product Image")]
         public byte[] productImage { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Cart> Carts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
         public virtual ProductCategory ProductCategory { get; set; }
-        public List<ProductCategory> AllocatedCategory { get; set; }
     }
 }

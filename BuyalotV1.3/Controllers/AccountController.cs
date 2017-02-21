@@ -15,13 +15,17 @@ namespace BuyalotV1._3.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+      
+        
+        public AccountController()
+        {
+            //DbEntities = new ApplicationDbContext();
+        }
+
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        public AccountController()
-        {
-        }
-
+       
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
             UserManager = userManager;
@@ -142,6 +146,8 @@ namespace BuyalotV1._3.Controllers
             return View();
         }
 
+     
+
         //
         // POST: /Account/Register
         [HttpPost]
@@ -163,13 +169,44 @@ namespace BuyalotV1._3.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Create", "ProductsManager");
                 }
                 AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
             return View(model);
+        }
+
+
+        
+        [AllowAnonymous]
+        [HttpGet]
+        public ActionResult RegisterRole()
+        {
+            var DbEntities = new ApplicationDbContext();
+            ViewBag.Name = new SelectList(DbEntities.Roles.ToList(), "Name", "Name");
+            ViewBag.UserName = new SelectList(DbEntities.Users.ToList(), "UserName", "UserName");
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> RegisterRole(RegisterViewModel model, ApplicationUser user)
+        {
+            var DbEntities = new ApplicationDbContext();
+            var userId = DbEntities.Users.Where(i => i.UserName == i.UserName).Select(s => s.Id);
+            string updateId = "";
+
+            foreach(var i in userId)
+            {
+                updateId = i.ToString();
+            }
+
+            //Assign Role to User here
+            await this.UserManager.AddToRoleAsync(updateId, model.Name);
+            return RedirectToAction("Index", "Role");
         }
 
         //

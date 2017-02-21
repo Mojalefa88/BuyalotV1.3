@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'c:\users\cindy\documents\visual studio 2015\Projects\BuyalotV1.3\BuyalotV1.3\Models\ModelDb.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Cindy\Desktop\BuyalotV1.3\BuyalotV1.3\Models\ModelDb.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

@@ -28,11 +28,15 @@ namespace BuyalotV1._3.Models
         public virtual DbSet<Address> Addresses { get; set; }
         public virtual DbSet<Admin> Admins { get; set; }
         public virtual DbSet<Billing> Billings { get; set; }
+        public virtual DbSet<Cart> Carts { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<Payment> Payments { get; set; }
         public virtual DbSet<ProductCategory> ProductCategories { get; set; }
         public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

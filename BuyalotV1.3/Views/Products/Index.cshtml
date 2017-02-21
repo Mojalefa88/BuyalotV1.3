@@ -1,0 +1,89 @@
+﻿
+@model BuyalotV1._3.Models.Product
+
+@{
+    ViewBag.Title = "Index";
+
+}
+
+
+<br />
+<h3 style="border-bottom:solid 2px; border-bottom-color:dodgerblue">List Of Products</h3>
+<br />
+<div class="container">
+    <div class="row">
+
+        @foreach (var product in ViewBag.ProductList)
+        {
+
+            <div class="table col-lg-10 table-bordered text-center" style="width:200px; height:350px; text-decoration: dotted; text-align:match-parent; display:inline-grid; margin:0 10px 10px 0;" id="myTable">
+                @{
+                    var base64 = Convert.ToBase64String(product.productImage);
+                    var prodImage = string.Format("data:image/png;base64,{0}", base64);
+                    var prodID = product.productID;
+                    var name1 = product.vendor + " " + product.productName;
+                    //var price1 = product.price.ToString();
+                    var quantity1 = product.quantityInStock;
+                    var check1 = "";
+
+                }
+
+                <div class="img-wrapper">
+                    <img src="@prodImage" style="max-height:200px;max-width:200px;" class="img-responsive" id="myImg" />
+                </div>
+
+                <p>@name1</p>
+                <p>@String.Format(String.Format("{0:0.00}", product.price))</p>
+                @if (quantity1 > 0)
+                {
+                    check1 = "In Stock";
+                    //<p style="color:green"><b>check1</b></p>
+                    <p style="color:green"><b>@check1</b></p>
+                    @*<p>@Html.ActionLink("Add To Cart", "AddToCart", "Products", new { id = prodID }, new { @class = "btn btn-success" })</p>*@
+
+                }
+                else
+                {
+
+                    check1 = "Out Of Stock";
+                    <p style="color:red"><b>@check1</b></p>
+                    @*<p>@Html.ActionLink("Add To WishList", "AddToCart", "Products", new { id = prodID }, new { @class = "btn btn-primary" })</p>*@
+
+                }
+                <p>@Html.ActionLink("Add To Cart", "AddToCart", "Products", new { id = prodID }, new { @class = "btn btn-success" })</p>
+                @*<p>@Html.ActionLink("Add To Cart", "UpdateCartCounter", "Products",  new { @class = "btn btn-success" })</p>*@
+
+
+            </div>
+                    }
+        </div>
+    </div>
+
+<div id="myModal" class="modal">
+    <span class="close">X</span>
+    <img class="modal-content" id="img01">
+    <div id="caption"></div>
+</div>
+
+<script>
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementById('myImg');
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+img.onclick = function(){
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    captionText.innerHTML = this.alt;
+}
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+</script>
